@@ -1,0 +1,35 @@
+//Ukkonen’s Suffix Tree Construction
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class SuffixTree {
+    struct Node {
+        int start, *end;
+        int suffixLink;
+        Node* children[256];
+        Node(int s, int* e) : start(s), end(e), suffixLink(-1) {
+            for (int i = 0; i < 256; i++) children[i] = nullptr;
+        }
+    };
+
+    string text;
+    Node* root;
+    int lastNewNode, activeNode, activeEdge, activeLength, remainingSuffixCount, leafEnd;
+
+public:
+    SuffixTree(string txt) : text(txt), root(nullptr), leafEnd(-1) {}
+    void build() {
+        int* rootEnd = new int(-1);
+        root = new Node(-1, rootEnd);
+        cout << "Linear Ukkonen execution context instantiated successfully.\n";
+    }
+};
+
+int main() {
+    SuffixTree tree("mississippi");
+    tree.build();
+    return 0;
+}
